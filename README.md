@@ -17,7 +17,7 @@ My preferred TypeScript Library project scaffolding.
 
 ``` bash
 # Install dependencies. Gulp POSTINSTALL task will finish setup.
-npm install
+npm install --silent 
 ```
 ### Gulp Tasks
 
