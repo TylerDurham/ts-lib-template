@@ -6,8 +6,6 @@ const sayHello = (name: string) => {
     return `${colors.magentaBright.bold('Hello')}, ${colors.bgBlueBright.bold(name)}!`
 }
 
-console.log("\n");
-console.log(sayHello(pkg.name));
-console.log("\n");
+console.log("\n" + sayHello(pkg.name) + "\n");
 
 export { sayHello }
