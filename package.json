@@ -11,9 +11,9 @@
     "compile": "gulp compile",
     "bundle": "gulp bundle",
     "build": "gulp build",
-    "test": "gulp build && gulp test",
-    "start": "npm run test && node ./lib/index.js",
-    "postinstall": "gulp postInstall && npm run test  && npm start"
+    "test": "gulp test",
+    "start": "node ./lib/index.js",
+    "postinstall": "gulp postInstall && gulp build && npm run test && npm start"
   },
   "keywords": [],
   "author": "TylerDurham <TylerDurham@users.noreply.github.com> (https://github.com/TylerDurham)",
