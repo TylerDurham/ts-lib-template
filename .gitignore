@@ -13,10 +13,10 @@ logs
 results
 tmp
 
-# Build
-build
-lib
-dist/**/*
+# Folders only in the root.
+/build
+/lib
+/dist/**/*
 
 # Coverage reports
 coverage
