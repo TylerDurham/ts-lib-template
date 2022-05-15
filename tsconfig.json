@@ -5,9 +5,10 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "outDir": "build"
   }, "include": [
-    "./src"
+    "./src/**/*.ts"
   ]
 }

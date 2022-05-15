@@ -31,7 +31,8 @@ const TASK_CONFIG = {
         paths: [
             tscConfig.compilerOptions.outDir,
             ".nyc_output",
-            "coverage"
+            "coverage",
+            "lib"
         ]
     },
     TEST: {

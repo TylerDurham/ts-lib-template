@@ -1,3 +1,4 @@
+import { bgBlueBright, blueBright, magentaBright } from 'ansi-colors';
 import { expect } from 'chai';
 import { sayHello } from '../src/index';
 import * as logger from './lib/logger';
@@ -16,7 +17,7 @@ describe(`Tests the project setup. You can delete this after project initializat
     });
 
     it(`Tests the index module.`, function (done) {
-        const expected = "Hello, World!"
+        const expected = `${magentaBright.bold('Hello')}, ${bgBlueBright.bold('World')}!`
 
         log(`Testing ${expected}`);
         warn(`Testing ${expected}`);
