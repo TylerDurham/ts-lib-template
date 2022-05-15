@@ -31,7 +31,6 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
-    "chalk": "^5.0.1",
     "dotenv": "^16.0.1"
   }
 }
