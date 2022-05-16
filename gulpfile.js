@@ -40,7 +40,7 @@ const TASK_CONFIG = {
         args: ['--config', './tests/.mocharc.json']
     },
     BUNDLE: {
-        command: 'webpack-cli'
+        command: './node_modules/.bin/webpack-cli'
     },
     COVERAGE: {
         command: './node_modules/.bin/nyc',
