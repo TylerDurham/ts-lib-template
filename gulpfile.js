@@ -1,10 +1,10 @@
 const del = require('del');
 // Makes spawning easier across platforms
-const spawn = require("cross-spawn").sync;      
+const spawn = require("cross-spawn").sync;
 const { series, src, dest } = require('gulp');
 const rename = require('gulp-rename');
 // Lot of info we can re-use from tsconfig.json
-const tscConfig = require('./tsconfig.json');  
+const tscConfig = require('./tsconfig.json');
 // My favorite console colors 
 const { magentaBright, blueBright, greenBright, yellowBright } = require('ansi-colors');
 const path = require('path');
@@ -32,15 +32,18 @@ const TASK_CONFIG = {
             tscConfig.compilerOptions.outDir,
             ".nyc_output",
             "coverage",
-            "lib"
+            "lib",
+            "build",
+            "types"
         ]
     },
     TEST: {
-        command: './node_modules/.bin/mocha',
-        args: ['--config', './tests/.mocharc.json']
+        command: `./node_modules/.bin/mocha`,
+        args: ['--config', './__tests__/.mocharc.json']
     },
     BUNDLE: {
-        command: './node_modules/.bin/webpack-cli'
+        command: './node_modules/.bin/rollup',
+        args: ['-c']
     },
     COVERAGE: {
         command: './node_modules/.bin/nyc',
@@ -61,8 +64,8 @@ const TASK_CONFIG = {
  * @param {*} done A callback that let's Gulp know we are finished.
  */
 const bundleTask = (done) => {
-    const { SPAWN: OPTIONS, BUNDLE: { command } } = TASK_CONFIG
-    const result = spawn(command, OPTIONS);
+    const { SPAWN: OPTIONS, BUNDLE: { command, args } } = TASK_CONFIG
+    const result = spawn(command, args, OPTIONS);
     done();
 }
 
@@ -117,7 +120,13 @@ exports.compile = compileTask;
  */
 const testTask = (done) => {
     const { SPAWN: OPTIONS, TEST: { command, args } } = TASK_CONFIG;
+    // IMPORTANT: Override TS module for the purpose of unit test
+    const TS_NODE_COMPILER_OPTIONS = JSON.stringify(
+        { "module": "commonjs" }
+    )
+    process.env.TS_NODE_COMPILER_OPTIONS = TS_NODE_COMPILER_OPTIONS;
     const result = spawn(command, args, OPTIONS);
+    //console.log(result)
     done();
 }
 
@@ -143,7 +152,7 @@ const postInstallTask = (done) => {
         .pipe(rename('.env'))
         .pipe(dest('.'));
 
-        done();
+    done();
 }
 
 postInstallTask.description = "Fires after the project is installed (npm install)."
