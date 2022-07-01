@@ -2,6 +2,7 @@
 import { nodeResolve as resolve } from '@rollup/plugin-node-resolve';
 import typescript from '@rollup/plugin-typescript';
 import dts from "rollup-plugin-dts";
+import ignore from "rollup-plugin-ignore"
 import json from '@rollup/plugin-json';
 
 const config = [
@@ -12,7 +13,7 @@ const config = [
             format: 'cjs',
             sourcemap: true,
         },
-        plugins: [resolve(), typescript(), json()]
+        plugins: [ignore(["ansi-colors"]), resolve(), typescript(), json()]
     },
     {
         input: 'build/index.d.ts',

@@ -35,6 +35,7 @@
     "nyc": "^15.1.0",
     "rollup": "^2.67.0",
     "rollup-plugin-dts": "^4.2.2",
+    "rollup-plugin-ignore": "^1.0.10",
     "source-map-support": "^0.5.21",
     "ts-node": "^10.7.0",
     "tslib": "^2.4.0",

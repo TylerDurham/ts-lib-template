@@ -39,7 +39,7 @@ const TASK_CONFIG = {
     },
     TEST: {
         command: `./node_modules/.bin/mocha`,
-        args: ['--config', './__tests__/.mocharc.json']
+        args: ['--config', './tests/.mocharc.json']
     },
     BUNDLE: {
         command: './node_modules/.bin/rollup',

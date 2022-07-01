@@ -2,7 +2,7 @@
     "extension": [
         "ts"
     ],
-    "spec": "tests/**/*.spec.ts",
+    "spec": "tests/**/*-tests.ts",
     "require": [
         "ts-node/register",
         "source-map-support/register"
