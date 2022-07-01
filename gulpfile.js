@@ -1,4 +1,5 @@
 const del = require('del');
+const fs = require('fs');
 // Makes spawning easier across platforms
 const spawn = require("cross-spawn").sync;
 const { series, src, dest } = require('gulp');
@@ -151,6 +152,18 @@ const postInstallTask = (done) => {
     src(`sample.env`)
         .pipe(rename('.env'))
         .pipe(dest('.'));
+
+    console.log('Removing POSTINSTALL scripts.');
+    const pkg = require("./package.json");
+    const bak = pkg.scripts['postinstall'];
+
+    console.log('Storing copy of POSTINSTALL in POSTINSTALL_BAK')
+    pkg.scripts['postinstall_bak'] = bak;
+
+    delete pkg.scripts['postinstall'];
+
+    //console.log(pkg)
+    fs.writeFileSync("package.json", JSON.stringify(pkg, null, 4));
 
     done();
 }
